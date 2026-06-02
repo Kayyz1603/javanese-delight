@@ -1,5 +1,6 @@
 package net.magentagtstudios.javanesedelight;
 
+import net.magentagtstudios.javanesedelight.item.ModItems;
 import net.neoforged.fml.common.EventBusSubscriber;
 import org.slf4j.Logger;
 
@@ -50,6 +51,8 @@ public class JavaneseDelight {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModItems.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -63,7 +66,12 @@ public class JavaneseDelight {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.SOYBEANS);
+            event.accept(ModItems.TOFU);
+            event.accept(ModItems.TEMPEH);
 
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
