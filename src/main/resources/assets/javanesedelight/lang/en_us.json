@@ -1,6 +1,9 @@
 {
-  "item.javanesedelight.soy_beans": "Soy Beans",
+  "item.javanesedelight.soybeans": "Soybeans",
+  "item.javanesedelight.cooked_soybeans": "Cooked Soybeans",
   "item.javanesedelight.tofu": "Tofu",
-  "item.javanesedelight.tempeh": "Tempeh"
+  "item.javanesedelight.unfermented_tempeh": "Unfermented Tempeh",
+  "item.javanesedelight.tempeh": "Tempeh",
 
+  "creativetab.javanesedelight.javanese_delight": "Javanese Delight"
 }

@@ -1,4 +1,4 @@
-package net.magentagtstudios.javanesedelight;
+package net.magentagt.javanesedelight;
 
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;

@@ -1,4 +1,4 @@
-package net.magentagtstudios.javanesedelight;
+package net.magentagt.javanesedelight;
 
 import java.util.List;
 
