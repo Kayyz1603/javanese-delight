@@ -1,0 +1,32 @@
+package net.magentagt.javanesedelight.common.registry;
+
+import net.magentagt.javanesedelight.JavaneseDelight;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
+public class ModCreativeModeTabs {
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, JavaneseDelight.MODID);
+
+    public static final Supplier<CreativeModeTab> JAVANESE_DELIGHT_TAB = CREATIVE_MODE_TAB.register("javanese_delight_tab",
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModItems.SOYBEANS.get()))
+                    .title(Component.translatable("creativetab.javanesedelight.javanese_delight"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.SOYBEANS);
+                        output.accept(ModItems.COOKED_SOYBEANS);
+                        output.accept(ModItems.TOFU);
+                        output.accept(ModItems.UNFERMENTED_TEMPEH);
+                        output.accept(ModItems.TEMPEH);
+                    }).build());
+
+
+    public static void register(IEventBus eventBus) {
+        CREATIVE_MODE_TAB.register(eventBus);
+    }
+}
