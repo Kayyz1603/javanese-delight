@@ -1,11 +1,7 @@
 {
   "type": "farmersdelight:cooking",
-  "container": {
-    "count": 1,
-    "id": "minecraft:bowl"
-  },
-  "cookingtime": 400,
-  "experience": 2.0,
+  "cookingtime": 100,
+  "experience": 0.35,
   "ingredients": [
     {
       "item": "javanesedelight:soybeans"

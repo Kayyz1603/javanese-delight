@@ -14,6 +14,9 @@ public class ModItems {
     public static final DeferredItem<Item> SOYBEANS = ITEMS.register("soybeans",
             () -> new Item(new Item.Properties()));
 
+    // Liquids
+
+
     // Processed ingredients
     public static final DeferredItem<Item> COOKED_SOYBEANS = ITEMS.register("cooked_soybeans",
             () -> new Item(new Item.Properties()));
