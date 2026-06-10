@@ -19,6 +19,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.javanesedelight.javanese_delight"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.SOYBEANS);
+
                         output.accept(ModItems.COOKED_SOYBEANS);
                         output.accept(ModItems.TOFU);
                         output.accept(ModItems.UNFERMENTED_TEMPEH);
