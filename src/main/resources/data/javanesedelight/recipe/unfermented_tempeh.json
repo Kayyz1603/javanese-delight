@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "javanesedelight:cooked_soybeans"},
+    {"item": "minecraft:brown_mushroom"},
+    {"tag": "minecraft:leaves"}
+  ],
+  "result": {
+    "count": 1,
+    "id": "javanesedelight:unfermented_tempeh"
+  }
+}
