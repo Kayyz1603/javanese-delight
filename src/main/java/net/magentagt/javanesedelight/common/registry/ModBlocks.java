@@ -1,6 +1,7 @@
 package net.magentagt.javanesedelight.common.registry;
 
 import net.magentagt.javanesedelight.JavaneseDelight;
+import net.magentagt.javanesedelight.common.block.FermentingBarrelBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -18,7 +19,7 @@ public class ModBlocks {
 
 
     public static final DeferredBlock<Block> FERMENTING_BARREL = registerBlock("fermenting_barrel",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)));
+            () -> new FermentingBarrelBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

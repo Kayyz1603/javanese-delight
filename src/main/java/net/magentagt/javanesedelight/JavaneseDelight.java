@@ -1,5 +1,6 @@
 package net.magentagt.javanesedelight;
 
+import net.magentagt.javanesedelight.common.registry.ModBlockEntities;
 import net.magentagt.javanesedelight.common.registry.ModBlocks;
 import net.magentagt.javanesedelight.common.registry.ModCreativeModeTabs;
 import net.magentagt.javanesedelight.common.registry.ModItems;
@@ -40,7 +41,7 @@ public class JavaneseDelight {
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-        //ModBlockEntityTypes.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
