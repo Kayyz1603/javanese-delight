@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "javanesedelight:block/fermenting_barrel_bottom",
+    "side": "javanesedelight:block/fermenting_barrel_side",
+    "top": "javanesedelight:block/fermenting_barrel_top_open"
+  }
+}

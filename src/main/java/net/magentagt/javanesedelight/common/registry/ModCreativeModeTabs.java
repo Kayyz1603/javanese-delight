@@ -24,6 +24,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TOFU);
                         output.accept(ModItems.UNFERMENTED_TEMPEH);
                         output.accept(ModItems.TEMPEH);
+
+                        output.accept(ModBlocks.FERMENTING_BARREL);
                     }).build());
 
 
