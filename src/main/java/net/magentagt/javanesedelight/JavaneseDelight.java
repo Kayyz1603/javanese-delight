@@ -1,9 +1,10 @@
 package net.magentagt.javanesedelight;
 
-import net.magentagt.javanesedelight.common.registry.ModBlockEntities;
-import net.magentagt.javanesedelight.common.registry.ModBlocks;
-import net.magentagt.javanesedelight.common.registry.ModCreativeModeTabs;
-import net.magentagt.javanesedelight.common.registry.ModItems;
+import net.magentagt.javanesedelight.common.registry.*;
+import net.magentagt.javanesedelight.common.screen.custom.FermentingBarrelScreen;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -42,6 +43,7 @@ public class JavaneseDelight {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -62,5 +64,14 @@ public class JavaneseDelight {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
+    }
+
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.FERMENTING_BARREL_MENU.get(), FermentingBarrelScreen::new);
+        }
     }
 }
