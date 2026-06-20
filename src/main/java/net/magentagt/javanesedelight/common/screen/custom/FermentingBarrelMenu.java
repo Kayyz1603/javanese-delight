@@ -1,6 +1,7 @@
 package net.magentagt.javanesedelight.common.screen.custom;
 
 import net.magentagt.javanesedelight.common.block.entity.FermentingBarrelBlockEntity;
+import net.magentagt.javanesedelight.common.block.entity.container.FermentingBarrelResultSlot;
 import net.magentagt.javanesedelight.common.registry.ModBlocks;
 import net.magentagt.javanesedelight.common.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -8,13 +9,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class FermentingBarrelMenu extends AbstractContainerMenu {
     public final FermentingBarrelBlockEntity blockEntity;
@@ -28,9 +27,6 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         super(ModMenuTypes.FERMENTING_BARREL_MENU.get(), containerId);
         this.blockEntity = ((FermentingBarrelBlockEntity) blockEntity);
         this.level = inv.player.level();
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
 
         // Input slots
         int startX = 38;
@@ -47,16 +43,57 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         }
 
         // Result slot
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 4, 116, 35));
+        this.addSlot(new FermentingBarrelResultSlot(this.blockEntity.inventory, 4, 116, 35));
 
+
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
     }
 
 
     private static final int TE_INVENTORY_SLOT_COUNT = 5;
 
     @Override
-    public ItemStack quickMoveStack(Player player, int i) {
-        return null;
+    public ItemStack quickMoveStack(Player player, int index) {
+        int indexResult = 4;
+        int playerInvStartIndex = indexResult + 1;
+        int playerInvEndIndex = playerInvStartIndex + 36;
+
+        Slot slot = this.slots.get(index);
+        ItemStack slotStackCopy = ItemStack.EMPTY;
+
+        if (slot.hasItem()) {
+            ItemStack slotStack = slot.getItem();
+            slotStackCopy = slotStack.copy();
+
+            if (index == indexResult) {
+                if (!this.moveItemStackTo(slotStack, playerInvStartIndex, playerInvEndIndex, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (index < indexResult) {
+                if (!this.moveItemStackTo(slotStack, playerInvStartIndex, playerInvEndIndex, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (!this.moveItemStackTo(slotStack, 0, indexResult, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (slotStack.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (slotStack.getCount() == slotStackCopy.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, slotStack);
+        }
+
+        return slotStackCopy;
     }
 
     @Override
