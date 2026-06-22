@@ -7,9 +7,7 @@ import net.magentagt.javanesedelight.common.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,15 +16,17 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 public class FermentingBarrelMenu extends AbstractContainerMenu {
     public final FermentingBarrelBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
 
     public FermentingBarrelMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
+        this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public FermentingBarrelMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
+    public FermentingBarrelMenu(int containerId, Inventory inv, BlockEntity blockEntity, ContainerData data) {
         super(ModMenuTypes.FERMENTING_BARREL_MENU.get(), containerId);
         this.blockEntity = ((FermentingBarrelBlockEntity) blockEntity);
         this.level = inv.player.level();
+        this.data = data;
 
         // Input slots
         int startX = 38;
@@ -35,7 +35,7 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         for (int row = 0; row < 2; row++) {
             for (int col = 0; col < 2; col++) {
                 this.addSlot(new SlotItemHandler(
-                        this.blockEntity.inventory,
+                        this.blockEntity.itemHandler,
                         (row * 2) + col,
                         startX + (col * slotSize),
                         startY + (row * slotSize)));
@@ -43,11 +43,13 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         }
 
         // Result slot
-        this.addSlot(new FermentingBarrelResultSlot(this.blockEntity.inventory, 4, 116, 35));
+        this.addSlot(new FermentingBarrelResultSlot(this.blockEntity.itemHandler, 4, 116, 35));
 
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
+
+        addDataSlots(data);
     }
 
 
@@ -114,5 +116,17 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; i++) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledArrowProgress() {
+        int progress = data.get(0);
+        int maxProgress = data.get(1);
+        int arrowPixelSize = 24;
+
+        return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
 }

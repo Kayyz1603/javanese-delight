@@ -13,6 +13,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 public class FermentingBarrelScreen extends AbstractContainerScreen<FermentingBarrelMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(JavaneseDelight.MODID, "textures/gui/fermentingbarrel/fermenting_barrel.png");
+    private static final ResourceLocation ARROW_TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(JavaneseDelight.MODID, "textures/gui/arrow_progress.png");
 
     public FermentingBarrelScreen(AbstractContainerMenu menu, Inventory playerInventory, Component title) {
         super((FermentingBarrelMenu) menu, playerInventory, title);
@@ -27,5 +29,19 @@ public class FermentingBarrelScreen extends AbstractContainerScreen<FermentingBa
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+
+        renderProgressArrow(guiGraphics, x, y);
+    }
+
+    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
+        if (menu.isCrafting()) {
+            guiGraphics.blit(ARROW_TEXTURE, x + 79, y + 35, 0, 0, menu.getScaledArrowProgress(), 16, 24, 16);
+        }
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }
