@@ -1,0 +1,10 @@
+{
+  "type": "javanesedelight:fermenting_barrel",
+  "ingredients": [
+    {"item": "javanesedelight:cooked_soybeans"},
+    {"item": "minecraft:brown_mushroom"}
+  ],
+  "result": {
+    "id": "javanesedelight:tempeh"
+  }
+}
