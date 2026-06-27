@@ -20,6 +20,8 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.SOYBEANS);
 
+                        output.accept(ModItems.SOY_SAUCE);
+
                         output.accept(ModItems.COOKED_SOYBEANS);
                         output.accept(ModItems.TOFU);
                         output.accept(ModItems.UNFERMENTED_TEMPEH);
