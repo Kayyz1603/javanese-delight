@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "javanesedelight:item/soy_sauce"
-  }
-}

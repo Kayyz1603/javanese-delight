@@ -2,7 +2,6 @@ package net.magentagt.javanesedelight.common.registry;
 
 import net.magentagt.javanesedelight.JavaneseDelight;
 import net.magentagt.javanesedelight.common.FoodValues;
-import net.magentagt.javanesedelight.common.item.MultiUseItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -37,8 +36,7 @@ public class ModItems {
             () -> new Item(basicItem()));
 
     // Liquids
-    public static final DeferredItem<Item> SOY_SAUCE = ITEMS.register("soy_sauce",
-            () -> new MultiUseItem(new Item.Properties().stacksTo(1), 8, Items.GLASS_BOTTLE));
+
 
     // Processed ingredients
     public static final DeferredItem<Item> COOKED_SOYBEANS = ITEMS.register("cooked_soybeans",
