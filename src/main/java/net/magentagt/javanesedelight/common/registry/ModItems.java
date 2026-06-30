@@ -26,8 +26,12 @@ public class ModItems {
         return new Item.Properties().food(foodProperties).craftRemainder(Items.BOWL).stacksTo(16);
     }
 
-    public static Item.Properties bottleItem(FoodProperties foodProperties) {
+    public static Item.Properties bottleItem() {
         return new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
+    }
+
+    public static Item.Properties bottleFoodItem(FoodProperties foodProperties) {
+        return new Item.Properties().food(foodProperties).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
     }
 
 
@@ -36,7 +40,8 @@ public class ModItems {
             () -> new Item(basicItem()));
 
     // Liquids
-
+    public static final DeferredItem<Item> SOY_SAUCE = ITEMS.register("soy_sauce",
+            () -> new Item(bottleItem()));
 
     // Processed ingredients
     public static final DeferredItem<Item> COOKED_SOYBEANS = ITEMS.register("cooked_soybeans",
