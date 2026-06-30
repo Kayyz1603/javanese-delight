@@ -25,6 +25,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.UNFERMENTED_TEMPEH);
                         output.accept(ModItems.TEMPEH);
 
+                        output.accept(ModItems.SOY_SAUCE);
+
                         output.accept(ModBlocks.FERMENTING_BARREL);
                     }).build());
 
