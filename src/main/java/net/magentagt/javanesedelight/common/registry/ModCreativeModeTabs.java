@@ -22,7 +22,6 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.COOKED_SOYBEANS);
                         output.accept(ModItems.TOFU);
-                        output.accept(ModItems.UNFERMENTED_TEMPEH);
                         output.accept(ModItems.TEMPEH);
 
                         output.accept(ModItems.SOY_SAUCE);
