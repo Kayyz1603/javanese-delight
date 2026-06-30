@@ -48,8 +48,6 @@ public class ModItems {
             () -> new Item(foodItem(FoodValues.COOKED_SOYBEANS)));
     public static final DeferredItem<Item> TOFU = ITEMS.register("tofu",
             () -> new Item(foodItem(FoodValues.TOFU)));
-    public static final DeferredItem<Item> UNFERMENTED_TEMPEH = ITEMS.register("unfermented_tempeh",
-            () -> new Item(basicItem()));
     public static final DeferredItem<Item> TEMPEH = ITEMS.register("tempeh",
             () -> new Item(foodItem(FoodValues.TEMPEH)));
 
