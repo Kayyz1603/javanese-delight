@@ -111,8 +111,8 @@ public class FermentingBarrelBlockEntity extends BlockEntity implements MenuProv
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         tag.put("itemHandler", itemHandler.serializeNBT(registries));
-        tag.putInt("growth_chamber.progress", progress);
-        tag.putInt("growth_chamber.max_progress", maxProgress);
+        tag.putInt("fermenting_barrel.progress", progress);
+        tag.putInt("fermenting_barrel.max_progress", maxProgress);
 
         super.saveAdditional(tag, registries);
     }
@@ -122,12 +122,14 @@ public class FermentingBarrelBlockEntity extends BlockEntity implements MenuProv
         super.loadAdditional(tag, registries);
 
         itemHandler.deserializeNBT(registries, tag.getCompound("itemHandler"));
-        progress = tag.getInt("growth_chamber.progress");
-        maxProgress = tag.getInt("growth_chamber.max_progress");
+        progress = tag.getInt("fermenting_barrel.progress");
+        maxProgress = tag.getInt("fermenting_barrel.max_progress");
     }
 
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
         if (canExecuteRecipe()) {
+            Optional<RecipeHolder<FermentingBarrelRecipe>> recipe = getCurrentRecipe();
+            maxProgress = recipe.get().value().fermentingTime();
             progress++;
             setChanged(level, blockPos, blockState);
 
@@ -157,7 +159,7 @@ public class FermentingBarrelBlockEntity extends BlockEntity implements MenuProv
 
     private void resetProgress() {
         progress = 0;
-        maxProgress = 72;
+        maxProgress = 3600;
     }
 
     private boolean canExecuteRecipe() {

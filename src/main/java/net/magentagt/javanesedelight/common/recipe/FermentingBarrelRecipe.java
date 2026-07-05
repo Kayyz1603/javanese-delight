@@ -1,7 +1,7 @@
 package net.magentagt.javanesedelight.common.recipe;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.RecordBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.magentagt.javanesedelight.common.registry.ModRecipes;
 import net.minecraft.core.HolderLookup;
@@ -16,11 +16,10 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.util.RecipeMatcher;
+import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 
-import java.util.List;
-
-public record FermentingBarrelRecipe(NonNullList<Ingredient> inputItems, ItemStack output) implements Recipe<FermentingBarrelRecipeInput> {
+public record FermentingBarrelRecipe(NonNullList<Ingredient> inputItems, ItemStack output, Integer fermentingTime, Float experience) implements Recipe<FermentingBarrelRecipeInput> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return inputItems;
@@ -74,22 +73,35 @@ public record FermentingBarrelRecipe(NonNullList<Ingredient> inputItems, ItemSta
                     nonNullList.addAll(ingredients);
                     return nonNullList;
                 }, ingredients -> ingredients).forGetter(FermentingBarrelRecipe::getIngredients),
-                ItemStack.CODEC.fieldOf("result").forGetter(FermentingBarrelRecipe::output)
+                ItemStack.CODEC.fieldOf("result").forGetter(FermentingBarrelRecipe::output),
+                Codec.INT.optionalFieldOf("fermentingtime", 3600).forGetter(FermentingBarrelRecipe::fermentingTime),
+                Codec.FLOAT.fieldOf("experience").forGetter(FermentingBarrelRecipe::experience)
         ).apply(inst, FermentingBarrelRecipe::new));
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, FermentingBarrelRecipe> STREAM_CODEC =
-                StreamCodec.composite(
-                        Ingredient.CONTENTS_STREAM_CODEC
-                                .apply(ByteBufCodecs.list())
-                                .map(list -> {
-                                    NonNullList<Ingredient> nonNullList = NonNullList.create();
-                                    nonNullList.addAll(list);
-                                    return nonNullList;
-                                }, list -> list),
-                        FermentingBarrelRecipe::inputItems,
-                        ItemStack.STREAM_CODEC,
-                        FermentingBarrelRecipe::output,
-                        FermentingBarrelRecipe::new);
+        // This code is "inspired" by Farmer's Delight (I can't be bothered to figure it out myself)
+        public static final StreamCodec<RegistryFriendlyByteBuf, FermentingBarrelRecipe> STREAM_CODEC = StreamCodec.of(FermentingBarrelRecipe.Serializer::toNetwork, FermentingBarrelRecipe.Serializer::fromNetwork);
+
+        private static FermentingBarrelRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            int i = buffer.readVarInt();
+            NonNullList<Ingredient> inputItems = NonNullList.withSize(i, Ingredient.EMPTY);
+            inputItems.replaceAll((ignored) -> (Ingredient)Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
+            ItemStack output = (ItemStack)ItemStack.STREAM_CODEC.decode(buffer);
+            float experience = buffer.readFloat();
+            int fermentingTime = buffer.readVarInt();
+            return new FermentingBarrelRecipe(inputItems, output, fermentingTime, experience);
+        }
+
+        private static void toNetwork(RegistryFriendlyByteBuf buffer, FermentingBarrelRecipe recipe) {
+            buffer.writeVarInt(recipe.inputItems.size());
+
+            for(Ingredient ingredient : recipe.inputItems) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
+            }
+
+            ItemStack.STREAM_CODEC.encode(buffer, recipe.output);
+            buffer.writeFloat(recipe.experience);
+            buffer.writeVarInt(recipe.fermentingTime);
+        }
 
         @Override
         public MapCodec<FermentingBarrelRecipe> codec() {

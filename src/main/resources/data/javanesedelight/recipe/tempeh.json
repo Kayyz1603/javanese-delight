@@ -1,10 +1,13 @@
 {
   "type": "javanesedelight:fermenting_barrel",
+  "fermentingtime": 3600,
+  "experience": 5.0,
   "ingredients": [
     {"item": "javanesedelight:cooked_soybeans"},
     {"item": "minecraft:brown_mushroom"}
   ],
   "result": {
+    "count": 1,
     "id": "javanesedelight:tempeh"
   }
 }

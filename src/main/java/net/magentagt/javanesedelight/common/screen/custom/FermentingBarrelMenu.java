@@ -5,6 +5,7 @@ import net.magentagt.javanesedelight.common.block.entity.container.FermentingBar
 import net.magentagt.javanesedelight.common.registry.ModBlocks;
 import net.magentagt.javanesedelight.common.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -123,10 +124,10 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
     }
 
     public int getScaledArrowProgress() {
-        int progress = data.get(0);
-        int maxProgress = data.get(1);
-        int arrowPixelSize = 24;
+        float progress = (float) data.get(0);
+        float maxProgress = (float) data.get(1);
+        float arrowPixelSize = 24.0F;
 
-        return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? Math.max(2, Math.round(progress * arrowPixelSize / maxProgress)) : 0;
     }
 }
