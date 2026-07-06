@@ -46,6 +46,8 @@ public class ModItems {
             () -> new Item(bottleItem()));
     public static final DeferredItem<Item> SOY_MILK = ITEMS.register("soy_milk_bottle",
             () -> new Item(bottleFoodItem(FoodValues.SOY_MILK)));
+    public static final DeferredItem<Item> VINEGAR = ITEMS.register("vinegar_bottle",
+            () -> new Item(bottleItem()));
 
     // Processed ingredients
     public static final DeferredItem<Item> COOKED_SOYBEANS = ITEMS.register("cooked_soybeans",
