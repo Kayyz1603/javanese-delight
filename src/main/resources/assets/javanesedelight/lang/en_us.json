@@ -1,9 +1,10 @@
 {
   "item.javanesedelight.soybeans": "Soybeans",
 
-  "item.javanesedelight.soy_sauce_bottle": "Bottle of Soy Sauce",
-  "item.javanesedelight.sweet_soy_sauce_bottle": "Bottle of Sweet Soy Sauce",
-  "item.javanesedelight.soy_milk_bottle": "Bottle of Soy Milk",
+  "item.javanesedelight.soy_sauce_bottle": "Soy Sauce Bottle",
+  "item.javanesedelight.sweet_soy_sauce_bottle": "Sweet Soy Sauce Bottle",
+  "item.javanesedelight.soy_milk_bottle": "Soy Milk Bottle",
+  "item.javanesedelight.vinegar_bottle": "Vinegar Bottle",
 
   "item.javanesedelight.cooked_soybeans": "Boiled Soybeans",
   "item.javanesedelight.tofu": "Tofu",

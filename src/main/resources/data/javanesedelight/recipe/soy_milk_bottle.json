@@ -13,7 +13,7 @@
   "container": {
     "id": "minecraft:glass_bottle"
   },
-  "recipe_book_tab": "meals",
+  "recipe_book_tab": "drinks",
   "result": {
     "count": 1,
     "id": "javanesedelight:soy_milk_bottle"

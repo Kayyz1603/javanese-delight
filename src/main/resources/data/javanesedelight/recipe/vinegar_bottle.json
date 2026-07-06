@@ -1,0 +1,13 @@
+{
+  "type": "javanesedelight:fermenting_barrel",
+  "fermentingtime": 7200,
+  "experience": 6.0,
+  "ingredients": [
+    {"item": "minecraft:potion"},
+    {"item": "minecraft:wheat"}
+  ],
+  "result": {
+    "count": 1,
+    "id": "javanesedelight:vinegar_bottle"
+  }
+}

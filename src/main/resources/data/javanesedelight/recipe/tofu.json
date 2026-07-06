@@ -1,0 +1,18 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "javanesedelight:soy_milk_bottle"
+    },
+    {
+      "item": "javanesedelight:vinegar_bottle"
+    }
+  ],
+  "recipe_book_tab": "misc",
+  "result": {
+    "count": 1,
+    "id": "javanesedelight:tofu"
+  }
+}
