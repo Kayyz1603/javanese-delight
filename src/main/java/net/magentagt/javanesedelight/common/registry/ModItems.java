@@ -40,8 +40,12 @@ public class ModItems {
             () -> new Item(basicItem()));
 
     // Liquids
-    public static final DeferredItem<Item> SOY_SAUCE = ITEMS.register("soy_sauce",
+    public static final DeferredItem<Item> SOY_SAUCE = ITEMS.register("soy_sauce_bottle",
             () -> new Item(bottleItem()));
+    public static final DeferredItem<Item> SWEET_SOY_SAUCE = ITEMS.register("sweet_soy_sauce_bottle",
+            () -> new Item(bottleItem()));
+    public static final DeferredItem<Item> SOY_MILK = ITEMS.register("soy_milk_bottle",
+            () -> new Item(bottleFoodItem(FoodValues.SOY_MILK)));
 
     // Processed ingredients
     public static final DeferredItem<Item> COOKED_SOYBEANS = ITEMS.register("cooked_soybeans",

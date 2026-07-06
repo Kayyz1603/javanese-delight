@@ -5,6 +5,10 @@ import net.minecraft.world.food.FoodProperties;
 public class FoodValues {
     // Raw ingredients
 
+    // Liquids
+    public static final FoodProperties SOY_MILK = new FoodProperties.Builder()
+            .nutrition(1).saturationModifier(0.2f).build();
+
 
     // Processed ingredients
     public static final FoodProperties COOKED_SOYBEANS = new FoodProperties.Builder()

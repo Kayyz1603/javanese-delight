@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "item": "javanesedelight:soybeans"
+    },
+    {
+      "item": "minecraft:potion"
+    }
+  ],
+  "container": {
+    "id": "minecraft:glass_bottle"
+  },
+  "recipe_book_tab": "meals",
+  "result": {
+    "count": 1,
+    "id": "javanesedelight:soy_milk_bottle"
+  }
+}
