@@ -4,10 +4,10 @@
   "experience": 6.0,
   "ingredients": [
     {
-      "item": "minecraft:potion"
+      "item": "javanesedelight:unfermented_soy_sauce_mix"
     },
     {
-      "item": "minecraft:wheat"
+      "item": "minecraft:glass_bottle"
     },
     {
       "item": "minecraft:glass_bottle"
@@ -18,6 +18,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "javanesedelight:vinegar_bottle"
+    "id": "javanesedelight:soy_sauce_bottle"
   }
 }
