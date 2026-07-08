@@ -1,7 +1,7 @@
 {
   "type": "javanesedelight:fermenting_barrel",
   "fermentingtime": 7200,
-  "experience": 6.0,
+  "experience": 2.0,
   "ingredients": [
     {
       "item": "javanesedelight:unfermented_soy_sauce_mix"

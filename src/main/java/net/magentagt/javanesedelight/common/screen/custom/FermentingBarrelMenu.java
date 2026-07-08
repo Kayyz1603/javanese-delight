@@ -44,7 +44,7 @@ public class FermentingBarrelMenu extends AbstractContainerMenu {
         }
 
         // Result slot
-        this.addSlot(new FermentingBarrelResultSlot(this.blockEntity.itemHandler, 4, 116, 35));
+        this.addSlot(new FermentingBarrelResultSlot(inv.player, this.blockEntity, this.blockEntity.itemHandler, 4, 116, 35));
 
 
         addPlayerInventory(inv);
