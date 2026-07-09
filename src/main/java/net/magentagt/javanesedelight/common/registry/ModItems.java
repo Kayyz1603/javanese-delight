@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.item.MilkBottleItem;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS =
@@ -19,19 +20,15 @@ public class ModItems {
     }
 
     public static Item.Properties foodItem(FoodProperties foodProperties) {
-        return new Item.Properties().food(foodProperties);
+        return (new Item.Properties()).food(foodProperties);
     }
 
     public static Item.Properties bowlFoodItem(FoodProperties foodProperties) {
-        return new Item.Properties().food(foodProperties).craftRemainder(Items.BOWL).stacksTo(16);
+        return (new Item.Properties()).food(foodProperties).craftRemainder(Items.BOWL).stacksTo(16);
     }
 
     public static Item.Properties bottleItem() {
-        return new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
-    }
-
-    public static Item.Properties bottleFoodItem(FoodProperties foodProperties) {
-        return new Item.Properties().food(foodProperties).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
+        return (new Item.Properties()).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16);
     }
 
 
@@ -45,7 +42,7 @@ public class ModItems {
     public static final DeferredItem<Item> SWEET_SOY_SAUCE = ITEMS.register("sweet_soy_sauce_bottle",
             () -> new Item(bottleItem()));
     public static final DeferredItem<Item> SOY_MILK = ITEMS.register("soy_milk_bottle",
-            () -> new Item(bottleFoodItem(FoodValues.SOY_MILK)));
+            () -> new MilkBottleItem(bottleItem()));
     public static final DeferredItem<Item> VINEGAR = ITEMS.register("vinegar_bottle",
             () -> new Item(bottleItem()));
 
