@@ -56,9 +56,15 @@ public class ModItems {
     public static final DeferredItem<Item> UNFERMENTED_SOY_SAUCE_MIX = ITEMS.register("unfermented_soy_sauce_mix",
             () -> new Item(basicItem()));
 
-    //Meals
+    // Snacks
+    public static final DeferredItem<Item> FRIED_TOFU = ITEMS.register("fried_tofu",
+            () -> new Item(foodItem(FoodValues.FRIED_TOFU)));
+    public static final DeferredItem<Item> FRIED_TEMPEH = ITEMS.register("fried_tempeh",
+            () -> new Item(foodItem(FoodValues.FRIED_TEMPEH)));
 
-    //Feasts
+    // Meals
+
+    // Feasts
 
 
 

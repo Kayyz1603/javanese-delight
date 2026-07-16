@@ -12,7 +12,13 @@ public class FoodValues {
     public static final FoodProperties TOFU = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.4f).build();
     public static final FoodProperties TEMPEH = new FoodProperties.Builder()
-            .nutrition(4).saturationModifier(0.4f).build();
+            .nutrition(3).saturationModifier(0.4f).build();
+
+    // Snacks
+    public static final FoodProperties FRIED_TOFU = new FoodProperties.Builder()
+            .nutrition(8).saturationModifier(4.0f).build();
+    public static final FoodProperties FRIED_TEMPEH = new FoodProperties.Builder()
+            .nutrition(8).saturationModifier(4.0f).build();
 
     // Meals
 
